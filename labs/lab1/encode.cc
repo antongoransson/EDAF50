@@ -20,9 +20,9 @@ int main(int argc, char** argv)
   if (input.is_open()) {
    while (getline (input, line)) {
      for(auto& c: line) {
-       c = encode(c);
-       code += c;
+       code += encode(c);
      }
+      code += '\n';
    }
    input.close();
   } else cout << "Unable to open file";

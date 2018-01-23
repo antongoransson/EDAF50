@@ -6,15 +6,12 @@
 #define MORSECODE_H
 
 #include <string>
-#include <map>
 class MorseCode {
 public:
 	MorseCode();
 	std::string encode(const std::string& text) const;
 	std::string decode(const std::string& code) const;
 private:
-	// std::map<std::string, std::string> text_map;
-	// std::map<std::string, std::string> code_map;
 	std:: string table[26];
 };
 

@@ -43,7 +43,7 @@ print_argv: print_argv.o
 
 # Standard clean
 clean:
-	rm -f *.o $(PROGS) *.enc *.dec
+	rm -f *.o $(PROGS) *.enc *.dec 
 
 distclean: clean
 	rm *.d

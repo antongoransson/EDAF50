@@ -4,15 +4,12 @@
 #include <sstream>
 #include <iostream>
 #include <typeinfo>
-#include <map>
 using namespace std;
 using std::cout;
 using std::endl;
 using std::map;
 
 MorseCode::MorseCode() {
-	// map<string, string> text_map;
-	// map<string, string> code_map;
 	string line;
  	ifstream input ("morse.def");
 	 if (input.is_open()) {

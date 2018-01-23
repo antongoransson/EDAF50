@@ -14,20 +14,21 @@ using std::string;
 int main(int argc, char** argv)
 {
   string line;
-  string code= "";
-  ifstream input (argv[1]);
+  string code = "";
+  string file{argv[1]};
+  ifstream input (file + ".enc");
   if (input.is_open()) {
    while (getline (input, line)) {
      for(auto& c: line) {
-       c = decode(c);
-       code += c;
+       code += decode(c);
      }
+     code += '\n';
    }
    input.close();
   } else cout << "Unable to open file";
   cout << code;
   ofstream output;
-  output.open ("out.dec");
+  output.open (file + ".dec");
   output << code;
   output.close();
 }
