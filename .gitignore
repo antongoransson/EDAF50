@@ -30,3 +30,10 @@
 *.exe
 *.out
 *.app
+
+#lab2
+
+labs/lab2/preprocess
+labs/lab2/spell
+labs/lab2/word
+labs/lab2/dictionary
