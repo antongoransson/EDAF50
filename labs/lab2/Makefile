@@ -27,13 +27,13 @@ PROGS = preprocess spell
 
 all: $(PROGS)
 
-test: test_coding
-	./test_coding
+test: spell
+	./spell
 
 # Targets rely on implicit rules for compiling and linking
 
 preprocess: preprocess.o
-spell: dictionary.o spell.o 
+spell: dictionary.o spell.o word.o
 # Phony targets
 .PHONY: all test clean distclean
 

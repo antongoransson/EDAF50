@@ -22,14 +22,15 @@ string createTrigrams(const string& text) {
   string::size_type nbr_trigrams;
   if (s.length() < 3)
     nbr_trigrams = 0;
-  else
+  else {
     nbr_trigrams = s.length() - 2;
-  vector<string> temp(nbr_trigrams);
-  for(string::size_type i = 0; i < nbr_trigrams; i++)
+    vector<string> temp(nbr_trigrams);
+    for(string::size_type i = 0; i < nbr_trigrams; i++)
       temp[i] = s.substr(i, 3);
-  sort(temp.begin(), temp.end());
-  for(const auto& t : temp)
+    sort(temp.begin(), temp.end());
+    for(const auto& t : temp)
       trigrams += t + " ";
+  }
   return s + " " + to_string(nbr_trigrams) + " " + trigrams;
 }
 
