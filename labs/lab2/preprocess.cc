@@ -13,8 +13,6 @@ using std::transform;
 using std::vector;
 using std::sort;
 
-
-
 string createTrigrams(const string& text) {
   string s = text;
   string trigrams = "";

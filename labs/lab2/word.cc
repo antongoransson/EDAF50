@@ -21,7 +21,6 @@ unsigned int Word::get_matches(const vector<string>& t) const {
 			if (c.compare(wt) == 0) {
 				++count;
 				break;
-				std::cout << "eyy" << '\n';
 			} else if (c.compare(wt) < 0)
 				break;
 		}

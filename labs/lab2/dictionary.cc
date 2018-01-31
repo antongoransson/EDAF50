@@ -73,7 +73,7 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 	string::size_type i, j, word_len = word.length();
 	if (word_len < 3)
 		return;
-	vector<string> suggestion_ranks[25];
+	vector<string> suggestion_ranks[WORD_SIZE];
 	for(auto s: suggestions) {
 		string::size_type s_len = s.length();
 		int d[26][26];
@@ -92,7 +92,7 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 		suggestion_ranks[d[word_len][s_len]].push_back(s);
 	}
 	j = 0;
-	for(i = 0; i < 25; ++i) {
+	for(i = 0; i < WORD_SIZE; ++i) {
 		sort(suggestion_ranks[i].begin(), suggestion_ranks[i].end());
 		for(auto& w: suggestion_ranks[i]) {
 			suggestions[j] = w;
