@@ -17,20 +17,16 @@ using std::min;
 
 Dictionary::Dictionary() {
 	string line, trigram, word;
-	string::size_type i = 0, size = 0;
 	ifstream input ("words.txt");
 	 if (input.is_open()) {
 		 while (getline (input, line)) {
-			 i = 0;
 			 stringstream ss(line);
 			 ss >> word;
 			 dict.insert(word);
-			 ss >> size;
-			 vector<string> trigrams(size);
-			 while(ss >> trigram) {
-				 trigrams[i] = trigram;
-				 ++i;
-			 }
+			 ss >> trigram;
+			 vector<string> trigrams;
+			 while(ss >> trigram)
+				 trigrams.push_back(trigram);
 			 words[word.length()].push_back(Word(word, trigrams));
 		 }
 		 input.close();
@@ -52,11 +48,11 @@ vector<string> Dictionary::get_suggestions(const string& word) const {
 }
 
 void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const string& word) const {
-	string::size_type i, nbr_trigrams, length = word.length();
-	if (length < 3)
+	string::size_type i, nbr_trigrams, len = word.length();
+	if (len < 3)
 		return;
 	else
-		nbr_trigrams = length - 2;
+		nbr_trigrams = len - 2;
 	vector<string> trigrams(nbr_trigrams);
 
 	// Create trigrams for word
@@ -65,18 +61,19 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 	sort(trigrams.begin(), trigrams.end());
 
 	// Loop through words on word.length +- 1
-	for(i = length - 1; i <= length + 1; ++i ){
+	for(i = len - 1; i <= len + 1; ++i) {
 		for(auto w: words[i]) {
 			if(w.get_matches(trigrams) >= nbr_trigrams / 2 )
 				suggestions.push_back(w.get_word());
 		}
 	}
-	return;
 }
 
 void Dictionary::rank_suggestions(vector<string>& suggestions, const string& word) const {
 	string::size_type i, j, word_len = word.length();
-	vector<string> suggestion_ranks[10];
+	if (word_len < 3)
+		return;
+	vector<string> suggestion_ranks[25];
 	for(auto s: suggestions) {
 		string::size_type s_len = s.length();
 		int d[26][26];
@@ -89,14 +86,13 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 			d[0][j] = j;
 		for (i = 1; i <= word_len; ++i) {
 			for (j = 1; j <= s_len; ++j) {
-				d[i][j] = min({ word[i- 1] == s[j - 1] ? d[i - 1][j - 1] : d[i - 1][j - 1] + 1, d[i - 1][j] + 1,
-					d[i][j - 1] + 1 });
+				d[i][j] = min({ word[i-1] == s[j-1] ? d[i-1][j-1] : d[i-1][j-1] + 1, d[i-1][j] + 1,	d[i][j-1] + 1 });
 			}
 		}
 		suggestion_ranks[d[word_len][s_len]].push_back(s);
 	}
 	j = 0;
-	for(i = 0; i < 10; ++i) {
+	for(i = 0; i < 25; ++i) {
 		sort(suggestion_ranks[i].begin(), suggestion_ranks[i].end());
 		for(auto& w: suggestion_ranks[i]) {
 			suggestions[j] = w;
@@ -105,5 +101,6 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 	}
 }
 void Dictionary::trim_suggestions(vector<std::string>& suggestions) const{
-	suggestions = vector<string>(suggestions.begin(), suggestions.begin() + 5);
+	int size = suggestions.size() >= 5 ? 5 : suggestions.size();
+	suggestions = vector<string>(suggestions.begin(), suggestions.begin() + size);
 }
