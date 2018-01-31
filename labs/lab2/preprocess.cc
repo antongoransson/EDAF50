@@ -1,5 +1,4 @@
 #include <fstream>
-#include <sstream>
 #include <iostream>
 #include <typeinfo>
 #include <algorithm>
@@ -20,7 +19,7 @@ string createTrigrams(const string& text) {
   string s = text;
   string trigrams = "";
   transform(s.begin(), s.end(), s.begin(), ::tolower);
-  string::size_type nbr_trigrams = 0;
+  string::size_type nbr_trigrams;
   if (s.length() < 3)
     nbr_trigrams = 0;
   else
@@ -36,19 +35,16 @@ string createTrigrams(const string& text) {
 
 int main() {
   string line;
-  int i = 0;
  	ifstream input ("words");
   ofstream output;
   output.open ("words.txt");
 	 if (input.is_open()) {
 		 while (getline (input, line)) {
-		 	stringstream ss(line);
       string trigram = createTrigrams(line);
       output << trigram << endl;
 		 }
 		 input.close();
 	 }
  else cout << "Unable to open file";
-
  return 0;
 }

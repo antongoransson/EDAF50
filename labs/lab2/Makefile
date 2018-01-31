@@ -23,7 +23,7 @@ LDFLAGS += -L.
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = preprocess
+PROGS = preprocess spell
 
 all: $(PROGS)
 
@@ -33,7 +33,7 @@ test: test_coding
 # Targets rely on implicit rules for compiling and linking
 
 preprocess: preprocess.o
-
+spell: dictionary.o spell.o 
 # Phony targets
 .PHONY: all test clean distclean
 
