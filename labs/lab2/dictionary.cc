@@ -1,11 +1,9 @@
-#include <string>
-#include <vector>
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <sstream>
 #include "word.h"
 #include "dictionary.h"
-#include <sstream>
 
 using std::string;
 using std::ifstream;
@@ -51,8 +49,7 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 	string::size_type i, nbr_trigrams, len = word.length();
 	if (len < 3)
 		return;
-	else
-		nbr_trigrams = len - 2;
+	nbr_trigrams = len - 2;
 	vector<string> trigrams(nbr_trigrams);
 
 	// Create trigrams for word
@@ -62,7 +59,7 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 
 	// Loop through words on word.length +- 1
 	for(i = len - 1; i <= len + 1; ++i) {
-		for(auto w: words[i]) {
+		for(const auto w: words[i]) {
 			if(w.get_matches(trigrams) >= nbr_trigrams / 2 )
 				suggestions.push_back(w.get_word());
 		}
@@ -74,7 +71,7 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 	if (word_len < 3)
 		return;
 	vector<string> suggestion_ranks[WORD_SIZE];
-	for(auto s: suggestions) {
+	for(const auto& s: suggestions) {
 		string::size_type s_len = s.length();
 		int d[26][26];
 		d[0][0] = 0;
@@ -92,9 +89,9 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 		suggestion_ranks[d[word_len][s_len]].push_back(s);
 	}
 	j = 0;
-	for(i = 0; i < WORD_SIZE; ++i) {
+	for(i = 0; i != WORD_SIZE; ++i) {
 		sort(suggestion_ranks[i].begin(), suggestion_ranks[i].end());
-		for(auto& w: suggestion_ranks[i]) {
+		for(const auto& w: suggestion_ranks[i]) {
 			suggestions[j] = w;
 			j++;
 		}
