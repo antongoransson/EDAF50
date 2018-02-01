@@ -7,6 +7,9 @@ class BitBuffer {
 public:
 	BitBuffer(std::ostream& out);
 	void put(bool b);
+private:
+	std::ostream& o;
+	std::string bits;
 };
 
 #endif

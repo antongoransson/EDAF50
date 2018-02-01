@@ -11,4 +11,5 @@ int main() {
 		buf.put(n != 0);
 	}
 	cout << endl;
+	return 0;
 }

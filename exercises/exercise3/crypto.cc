@@ -3,12 +3,19 @@
 #include <string>
 #include <random>
 
-using namespace std;
+
+using std::string;
 
 string Crypto::encrypt(const string& text, unsigned int key) {
-	return "";
+	string crypt = "";
+	for (auto c: text)
+		crypt += (c + key) % 256;
+	return crypt;
 }
 
 string Crypto::decrypt(const string& crypt, unsigned int key) {
-	return "";
+	string text = "";
+	for (auto c: crypt)
+		text += (c - key) % 256;
+	return text;
 }
