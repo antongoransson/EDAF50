@@ -16,6 +16,15 @@ SVector::~SVector() {
 	delete[] v;
 }
 
+SVector& SVector::operator =(const SVector& sv) {
+	if(this != &sv) {
+		delete []v;
+		v = sv.v;
+		n = sv.n;
+	}
+	return *this;
+}
+
 size_t SVector::size() const {
 	return n;
 }

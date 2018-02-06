@@ -16,6 +16,7 @@ public:
 	size_t size() const;           // number of elements
 	int get(size_t i) const;       // number at index i
 	void set(size_t i, int value); // change the number at index i
+	SVector& operator =(const SVector& sv);
 private:
 	size_t n; // the size of the vector
 	int* v;   // an array to hold the numbers
