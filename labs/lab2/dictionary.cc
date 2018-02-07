@@ -71,7 +71,7 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 	string::size_type i, j, w_len {word.length()};
 	if (w_len < 3)
 		return;
-		
+
 	vector<pair<int, string>> distances;
 	for(const auto& s: suggestions) {
 		string::size_type s_len = s.length();
@@ -81,11 +81,9 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 		for (i = 1; i <= w_len; ++i) d[i][0] = i;
 		for (j = 1; j <= s_len; ++j) d[0][j] = j;
 		// Calculate cost using Levenshtein distance
-		for (i = 1; i <= w_len; ++i) {
-			for (j = 1; j <= s_len; ++j) {
+		for (i = 1; i <= w_len; ++i)
+			for (j = 1; j <= s_len; ++j)
 				d[i][j] = min({ d[i-1][j-1] + (word[i-1] == s[j-1] ? 0 : 1), d[i-1][j] + 1,	d[i][j-1] + 1 });
-			}
-		}
 		distances.push_back(make_pair(d[w_len][s_len], s));
 	}
 	sort(distances.begin(), distances.end());
@@ -97,5 +95,5 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 
 void Dictionary::trim_suggestions(vector<std::string>& suggestions) const {
 	size_t size = suggestions.size() >= 5 ? 5 : suggestions.size();
-	suggestions = vector<string>(suggestions.begin(), suggestions.begin() + size);
+	suggestions.resize(size);
 }
