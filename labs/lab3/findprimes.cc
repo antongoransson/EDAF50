@@ -22,9 +22,9 @@ void FindPrimes::calc_primes(string& primes) {
     while (i < primes.length() && i != string::npos) {
       if (i % pos == 0 && i != pos)
         primes[i] = 'C';
-      i = primes.find("P",i + 1);
+      i = primes.find("P", i + 1);
     }
-    pos = primes.find("P",pos + 1);
+    pos = primes.find("P", pos + 1);
   }
 }
 
