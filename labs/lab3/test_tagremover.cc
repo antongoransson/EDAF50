@@ -14,7 +14,7 @@ void testTagRemove() {
     cout << "Remove Tags Success" << endl;
   else
     cout << "Remove Tags Failed" << endl;
-  tr.print(cout);
+  tr.print(cout);  
 }
 void testRemoveSpecialChars() {
   string test = "Here &lt is a string &amp chars &gt with spec&nbspchars &amp other fun stuff";
@@ -25,11 +25,11 @@ void testRemoveSpecialChars() {
     cout << "Translate Special Chars Success" << endl;
   else
     cout << "Translate Special Chars Failed" << endl;
-  tr.print(cout);
 }
 
 int main() {
   testTagRemove();
   testRemoveSpecialChars();
-  // TagRemover tr(cin);
+  TagRemover tr(cin);
+  tr.print(cout);
 }

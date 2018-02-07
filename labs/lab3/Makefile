@@ -17,24 +17,24 @@ CXXFLAGS += -g
 CXXFLAGS += $(DEPFLAGS)
 LDFLAGS =   -g
 # LDLIBS = -llab1
-LDFLAGS += -L.
+# LDFLAGS += -L.
 #CPPFLAGS += -stdlib=libc++
 #CXXFLAGS += -stdlib=libc++
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = tagremover_test date_test
+PROGS = test_tagremover date_test
 
 all: $(PROGS)
 
-t1: tagremover_test
-	./tagremover_test
+t1: test_tagremover
+	./test_tagremover
 
-# t2: tagremover_test
+# t2: test_tagremover
 # 	./spell
 
 # Targets rely on implicit rules for compiling and linking
-tagremover_test: tagremover.o tagremover_test.o
+test_tagremover: tagremover.o test_tagremover.o
 # Phony targets
 .PHONY: all test clean distclean
 

@@ -8,9 +8,13 @@ using std::istream;
 using std::string;
 using std::regex_replace;
 using std::regex;
+using std::getline;
 
 TagRemover::TagRemover(istream& is) {
-  is >> text;
+  string line;
+  while(getline(is, line))
+    text += line + "\n";
+  removeAll(text);
 }
 
 TagRemover::TagRemover(const string& s): text(s) {
@@ -31,18 +35,17 @@ string TagRemover::getText() const {
 }
 
 void TagRemover::translateSpecialChars(string& text) {
-  regex replace_spec ("(&amp)+");
+  regex replace_spec ("&amp*");
   text = regex_replace (text, replace_spec, "&");
-  regex replace_spec1 ("(&lt)+");
+  regex replace_spec1 ("&lt*");
   text = regex_replace (text, replace_spec1, "<");
-  regex replace_spec2 ("(&gt)+");
+  regex replace_spec2 ("&gt*");
   text = regex_replace (text, replace_spec2, ">");
-  regex replace_spec3 ("(&nbsp)+");
+  regex replace_spec3 ("&nbsp*");
   text = regex_replace (text, replace_spec3, " ");
 }
 
 void TagRemover::removeTags(string& text) {
   regex tag_remove (" <[^>]*>");
   text = regex_replace (text, tag_remove, "");
-
 }
