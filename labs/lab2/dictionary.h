@@ -13,9 +13,10 @@ public:
 	bool contains(const std::string& word) const;
 	std::vector<std::string> get_suggestions(const std::string& word) const;
 private:
-	void add_trigram_suggestions(std::vector<std::string>& suggestions, const std::string& word) const;
-	void rank_suggestions(std::vector<std::string>& suggestions, const std::string& word) const;
+	void add_trigram_suggestions(std::vector<std::string>& suggestions, const std::string word) const;
+	void rank_suggestions(std::vector<std::string>& suggestions, const std::string word) const;
 	void trim_suggestions(std::vector<std::string>& suggestions) const;
+	unsigned int levenshteinDistance(const std::string word, const std::string suggestion) const;
 	std::unordered_set<std::string> dict;
 	std::vector<Word> words[WORD_SIZE];
 };
