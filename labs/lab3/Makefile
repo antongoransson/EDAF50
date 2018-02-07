@@ -30,11 +30,12 @@ all: $(PROGS)
 t1: test_tagremover
 	./test_tagremover
 
-# t2: test_tagremover
-# 	./spell
+t2: test_findprimes
+	./test_findprimes
 
 # Targets rely on implicit rules for compiling and linking
 test_tagremover: tagremover.o test_tagremover.o
+test_findprimes: findprimes.o
 # Phony targets
 .PHONY: all test clean distclean
 
