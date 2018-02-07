@@ -15,15 +15,24 @@ string Word::get_word() const {
 }
 
 unsigned int Word::get_matches(const vector<string>& t) const {
-	int count = 0;
-	for(auto& c: t) {
-		for(auto& wt: trigrams) {
-			if (c.compare(wt) == 0) {
-				++count;
-				break;
-			} else if (c.compare(wt) < 0)
-				break;
-		}
+	size_t count {0}, i {0}, j {0};
+	while (i < t.size() && j < trigrams.size()) {
+		if (t[i] == trigrams[j]) {
+			++count;
+			++j;
+			++i;
+		} else if(t[i] < trigrams[j]) ++i;
+		else if(t[i]  > trigrams[j]) ++j;
+	}
+
+	while (i < t.size() && trigrams.size() != 0) {
+		if (t[i] == trigrams[j -1]) ++count;
+		++i;
+	}
+
+	while (j < trigrams.size() && t.size() != 0) {
+		if (t[i- 1] == trigrams[j]) ++count;
+		++j;
 	}
 	return count;
 }
