@@ -17,9 +17,9 @@ string FindPrimes::get_prime() const {
 void FindPrimes::calc_primes(string& primes) {
   string::size_type pos = primes.find("P");
   while (pos != string::npos) {
-    string::size_type i = pos;
+    string::size_type i = pos + 1;
     while (i != string::npos) {
-      if (i % pos == 0 && i != pos)
+      if (i % pos == 0)
         primes[i] = 'C';
       i = primes.find("P", i + 1);
     }

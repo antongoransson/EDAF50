@@ -31,6 +31,15 @@ void testM11() {
     cout << "M=11 Failed" << endl;
 }
 
+void testM35() {
+  FindPrimes fp(35);
+  string res = "CCPPCPCPCCCPCPCCCPCPCCCPCCCCCPCPCCCC";
+  if (fp.get_prime() == res)
+    cout << "M=35 Success" << endl;
+  else
+    cout << "M=35 Failed" << endl;
+}
+
 void print200Primes() {
   FindPrimes fp(200);
   fp.print_primes();
@@ -50,6 +59,7 @@ int main() {
   testM5();
   testM7();
   testM11();
+  testM35();
   print200Primes();
   testFindLargest();
 

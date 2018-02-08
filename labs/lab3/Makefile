@@ -23,7 +23,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = test_tagremover date_test
+PROGS = test_tagremover date_test test_findprimes
 
 all: $(PROGS)
 
@@ -41,7 +41,7 @@ test_findprimes: findprimes.o
 
 # Standard clean
 clean:
-	rm -f *.o $(PROGS) *.enc *.dec
+	rm -f *.o $(PROGS) *.enc *.dec *.d
 
 distclean: clean
 	rm *.d
