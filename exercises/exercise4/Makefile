@@ -23,9 +23,14 @@ LDFLAGS =   -g
 PROGS = shapetest shapevectortest rationaltest
 
 all: $(PROGS)
-test: rationaltest
+t1: rationaltest
 	./rationaltest
-	
+
+t2: shapetest
+	./shapetest
+
+t3: shapevectortest
+	./shapevectortest
 # Targets rely on implicit rules for compiling and linking
 shapetest: shapetest.o
 shapevectortest: shapevectortest.o

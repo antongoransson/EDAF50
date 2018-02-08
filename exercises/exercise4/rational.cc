@@ -4,6 +4,9 @@
 using std::cout;
 using std::endl;
 using std::abs;
+using std::ostream;
+using std::string;
+using std::to_string;
 
 Rational::Rational(): numerator(0), denumerator(1) {
   simplify();
@@ -65,3 +68,11 @@ unsigned int Rational::binaryGCD(int& a, int& b) {
   }
   return  v * g;
 }
+
+ostream& operator<<(ostream& o, const Rational& r) {
+  string s = to_string(r.numerator);
+  if(! (r.numerator == 0 || r.denumerator == 1))
+    s += "/" + to_string(r.denumerator);
+  o << s;
+  return o;
+  }
