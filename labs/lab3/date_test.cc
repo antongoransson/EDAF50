@@ -19,7 +19,7 @@ int main() {
 		if (cin.eof()) {
 			cont = false;
 		} else if (!cin.good()) {
-			cout << "Wrong input format" << endl;
+			cout << "Wrong input format or Invalid date" << endl;
 			// restore stream state and ignore the rest of the line
 			cin.clear();
 			cin.ignore(10000, '\n');

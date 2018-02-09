@@ -34,11 +34,15 @@ t2: test_findprimes
 	./test_findprimes
 
 t3: date_test
-	./date_test	
+	./date_test
+
+t4: test_tostring
+	./test_tostring
 
 # Targets rely on implicit rules for compiling and linking
 test_tagremover: tagremover.o test_tagremover.o
 test_findprimes: findprimes.o
+test_tostring: test_tostring.o date.o
 date_test: date.o
 # Phony targets
 .PHONY: all test clean distclean
