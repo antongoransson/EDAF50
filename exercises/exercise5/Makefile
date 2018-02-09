@@ -24,10 +24,21 @@ PROGS = texttest sortwords personsorttest
 
 all: $(PROGS)
 
+t1: texttest
+	./texttest
+t2: personsorttest
+	./personsorttest
+
+t3: sortwords
+	./sortwords
+
+t4: avtest
+	./avtest
 # Targets rely on implicit rules for compiling and linking
 texttest: texttest.o
 sortwords: sortwords.o
 personsorttest: personsorttest.o person.o
+avtest: avtest.o av.o
 
 # Phony targets
 .PHONY: all clean distclean

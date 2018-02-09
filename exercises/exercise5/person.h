@@ -12,6 +12,9 @@ public:
 	name(n), phone(p) {}
 	std::string get_name() const { return name; }
 	std::string get_phone() const { return phone; }
+	friend bool operator< (const Person& a, const Person& b) {
+		return a.name < b.name ||(a.name == b.name && a.phone < b.phone);
+	}
 private:
 	std::string name;
 	std::string phone;
