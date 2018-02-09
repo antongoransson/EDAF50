@@ -59,7 +59,7 @@ istream& operator>>(istream& is, Date& d) {
 	string line;
 	getline(is, line);
 	size_t n = count(line.begin(), line.end(), '-');
-	if (n < 2){
+	if (n != 2){
 		is.setstate (ios_base::failbit);
 		return is;
 	}
