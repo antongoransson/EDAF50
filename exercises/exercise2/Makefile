@@ -7,15 +7,15 @@ CC  = g++
 # Define preprocessor, compiler, and linker flags. Uncomment the # lines
 # if you use clang++ and wish to use libc++ instead of GNU's libstdc++.
 CXXFLAGS =  -g -O2 -Wall -W -pedantic-errors
-CXXFLAGS += -Wmissing-braces -Wparentheses -Wold-style-cast 
-CXXFLAGS += -std=c++11 
-LDFLAGS =   -g 
+CXXFLAGS += -Wmissing-braces -Wparentheses -Wold-style-cast
+CXXFLAGS += -std=c++11
+LDFLAGS =   -g
 #CPPFLAGS =  -stdlib=libc++
 #CXXFLAGS += -stdlib=libc++
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = memerrortest morsetest editortest 
+PROGS = memerrortest morsetest editortest
 
 all: $(PROGS)
 
@@ -29,7 +29,7 @@ editortest: editortest.o editor.o
 
 # Standard clean
 clean:
-	rm -f *.o $(PROGS)
+	rm -f *.o *.d $(PROGS)
 
 # Generate dependencies in *.d files
 %.d: %.cc

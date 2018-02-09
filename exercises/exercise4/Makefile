@@ -41,7 +41,7 @@ rationaltest: rational.o rationaltest.o
 
 # Standard clean
 clean:
-	rm -f *.o $(PROGS)
+	rm -f *.o  $(PROGS)
 
 distclean: clean
 	rm *.d

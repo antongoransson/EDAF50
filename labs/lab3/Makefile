@@ -23,7 +23,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = test_tagremover date_test test_findprimes
+PROGS = test_tagremover date_test test_findprimes test_tostring
 
 all: $(PROGS)
 

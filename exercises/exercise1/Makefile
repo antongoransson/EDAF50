@@ -29,7 +29,7 @@ palindrome: palindrome.o
 
 # Standard clean
 clean:
-	rm -f *.d $(PROGS)
+	rm -f *.d *.o $(PROGS)
 
 # Generate dependencies in *.d files
 %.d: %.cc
