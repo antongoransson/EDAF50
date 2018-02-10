@@ -12,7 +12,7 @@ string::size_type Editor::find_left_par(string::size_type pos) const {
 		case ']': type = '['; break;
 		case '}': type = '{'; break;
 		case ')': type = '('; break;
-		default: return -1; break;
+		default: return  string::npos; break;
 	}
 	for (string::size_type i = pos - 1; i > 0; --i) {
 		if (text[i] == in)
@@ -22,5 +22,5 @@ string::size_type Editor::find_left_par(string::size_type pos) const {
 			--number_left;
 		}
 	}
-	return -1	;
+	return  string::npos	;
 }
