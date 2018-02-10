@@ -22,5 +22,5 @@ string::size_type Editor::find_left_par(string::size_type pos) const {
 			--number_left;
 		}
 	}
-	return  string::npos	;
+	return  string::npos;
 }
