@@ -38,7 +38,7 @@ t4: avtest
 texttest: texttest.o
 sortwords: sortwords.o
 personsorttest: personsorttest.o person.o
-avtest: avtest.o av.o
+avtest: avtest.o 
 
 # Phony targets
 .PHONY: all clean distclean
