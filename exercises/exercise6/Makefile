@@ -24,6 +24,8 @@ PROGS = csorttest
 
 all: $(PROGS)
 
+t1: csorttest
+	./csorttest
 # Targets rely on implicit rules for compiling and linking
 csorttest: csorttest.o
 

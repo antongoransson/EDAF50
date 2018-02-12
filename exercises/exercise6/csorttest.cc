@@ -9,12 +9,29 @@
 #include <ctime>
 #include <iomanip>
 
+using std::vector;
+using std::min_element;
+using std::minmax_element;
+using std::cout;
+using std::endl;
+
 template <typename Iterator>
 // Iterator is a model of ForwardIterator.
 // Sort integral values in the range [first, last) with Counting sort.
 // The difference between the largest element and the smallest
 // element should not be too large.
 void csort(Iterator first, Iterator last) {
+	if (first == last) return;
+	auto minmax = minmax_element(first, last);
+	int min = *minmax.first;
+	int max = *minmax.second;
+	vector<unsigned int> v(max - min + 1);
+	for (auto it = first; it != last; ++it)
+		v[*it - min] += 1;
+	for (unsigned int i = 0; i !=  v.size(); ++i) {
+		if(v[i] != 0)
+			*first++ = i + min;
+	}
 }
 
 template <typename Iterator>
@@ -31,19 +48,19 @@ using namespace std;
 using namespace std::chrono;
 
 int main() {
-	size_t nbrElements;
+	size_t nbrElements = 0;
 	cout << "Number of elements: ";
 	cin >> nbrElements;
-	
-	int minElem, maxElem;
+
+	int minElem = 0, maxElem= 0;
 	cout << "Min and max element: ";
 	cin >> minElem >> maxElem;
-	
+
 	char ch;
 	cout << "Print for debug (y/n)? ";
 	cin >> ch;
 	bool print = ch == 'y';
-	
+
 	/*
 	 * Fill the sequence with random ints in the range
 	 * [minElem, maxElem].
@@ -55,29 +72,29 @@ int main() {
 		v.push_back(rand(re));
 	}
 	auto vCopy = v;
-	
+
 	if (print) {
 		debug_print(v.begin(), v.end(), "Unsorted sequence:");
 	}
-	
+
 	auto startTime = high_resolution_clock::now();
 	csort(v.begin(), v.end());
 	double elapsedTime =
 	    duration_cast<milliseconds>(high_resolution_clock::now() - startTime).count();
 	cout << "csort() time (seconds):	 "
 		 << setiosflags(ios::fixed) << setprecision(3) << elapsedTime / 1000 << endl;
-	
+
 	if (print) {
 		debug_print(v.begin(), v.end(), "Sequence sorted with csort():");
 	}
-	
+
 	startTime = high_resolution_clock::now();
 	sort(vCopy.begin(), vCopy.end());
 	elapsedTime =
 	    duration_cast<milliseconds>(high_resolution_clock::now() - startTime).count();
 	cout << "std::sort() time (seconds): "
 		<< setiosflags(ios::fixed) << setprecision(3) << elapsedTime / 1000 << endl;
-	
+
 	if (print) {
 		debug_print(vCopy.begin(), vCopy.end(),  "Sequence sorted with std::sort():");
 	}
