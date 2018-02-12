@@ -26,8 +26,12 @@ all: $(PROGS)
 
 t1: csorttest
 	./csorttest
+
+t2: generate
+	./generate
 # Targets rely on implicit rules for compiling and linking
 csorttest: csorttest.o
+generate: generate.o
 
 # Phony targets
 .PHONY: all clean distclean
