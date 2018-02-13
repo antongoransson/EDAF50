@@ -29,8 +29,12 @@ all: $(PROGS)
 
 t1: nstest
 	./nstest
+
+t2: nstime
+	./nstime
 # Targets rely on implicit rules for compiling and linking
-nstest: vns.o mns.o
+nstest: vns.o mns.o umns.o
+nstime: vns.o mns.o umns.o
 # Phony targets
 .PHONY: all test clean distclean
 

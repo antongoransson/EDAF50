@@ -8,22 +8,7 @@ using std::ifstream;
 using std::find_if;
 using std::pair;
 
-VNS::VNS() {
-  string line;
-  HostName hn;
-  IPAddress ip;
-	ifstream input ("nameserverdata.txt");
-	 if (input.is_open()) {
-		 while (getline (input, line)) {
-			 istringstream ss(line);
-			 ss >> hn;
-			 ss >> ip;
-       nameservers.push_back(make_pair(hn, ip));
-		 }
-		 input.close();
-	 }
- else cout << "Unable to open file";
-}
+VNS::VNS() {}
 
 void VNS::insert(const HostName& hn, const IPAddress& ip) {
   nameservers.push_back(make_pair(hn, ip));

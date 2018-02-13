@@ -1,23 +1,23 @@
-#include "mns.h"
+#include "umns.h"
 using std::string;
 using std::cout;
 using std::endl;
 using std::istringstream;
 using std::ifstream;
-using std::map;
+using std::unordered_map;
 
-MNS::MNS() {}
+UMNS::UMNS() {}
 
-void MNS::insert(const HostName& hn, const IPAddress& ip) {
+void UMNS::insert(const HostName& hn, const IPAddress& ip) {
   nameservers[hn] = ip;
 }
 
-bool MNS::remove(const HostName& hn) {
+bool UMNS::remove(const HostName& hn) {
   return nameservers.erase(hn) == 1;
 
 }
 
-IPAddress MNS::lookup(const HostName& hn) const {
+IPAddress UMNS::lookup(const HostName& hn) const {
   auto nameserver = nameservers.find(hn);
   if (nameserver != nameservers.end())
     return nameserver->second;
