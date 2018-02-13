@@ -8,5 +8,5 @@ public:
   bool remove(const HostName& hn) override;
   IPAddress lookup(const HostName& hn) const override;
 private:
-  std::map<HostName, unsigned int> nameservers;
+  std::map<HostName, unsigned int> records;
 };

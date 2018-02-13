@@ -11,5 +11,5 @@ public:
   IPAddress lookup(const HostName& hn) const override;
 private:
   size_t size;
-  std::vector<std::vector<std::pair<HostName, IPAddress>>> nameservers;
+  std::vector<std::vector<std::pair<HostName, IPAddress>>> records;
 };

@@ -4,17 +4,17 @@ using std::map;
 MNS::MNS() {}
 
 void MNS::insert(const HostName& hn, const IPAddress& ip) {
-  nameservers[hn] = ip;
+  records[hn] = ip;
 }
 
 bool MNS::remove(const HostName& hn) {
-  return nameservers.erase(hn) == 1;
+  return records.erase(hn) == 1;
 
 }
 
 IPAddress MNS::lookup(const HostName& hn) const {
-  auto nameserver = nameservers.find(hn);
-  if (nameserver != nameservers.end())
-    return nameserver->second;
+  auto record = records.find(hn);
+  if (record != records.end())
+    return record->second;
   return NON_EXISTING_ADDRESS;
 }

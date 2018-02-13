@@ -3,19 +3,19 @@
 using std::hash;
 using std::pair;
 
-HNS::HNS(size_t s): size(s), nameservers(s) {}
+HNS::HNS(size_t s): size(s), records(s) {}
 
 void HNS::insert(const HostName& hn, const IPAddress& ip) {
   size_t i = hash<HostName>()(hn) % size;
-  nameservers[i].push_back(make_pair(hn, ip));
+  records[i].push_back(make_pair(hn, ip));
 }
 
 bool HNS::remove(const HostName& hn) {
   size_t i = hash<HostName>()(hn) % size;
-  auto nameserver = remove_if(nameservers[i].begin(), nameservers[i].end(),
+  auto record = remove_if(records[i].begin(), records[i].end(),
   [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
-  if (nameserver != nameservers[i].end()){
-    nameservers[i].erase(nameserver);
+  if (record != records[i].end()){
+    records[i].erase(record);
     return true;
   }
   return false;
@@ -23,9 +23,9 @@ bool HNS::remove(const HostName& hn) {
 
 IPAddress HNS::lookup(const HostName& hn) const {
   size_t i = hash<HostName>()(hn) % size;
-  auto nameserver = find_if(nameservers[i].begin(), nameservers[i].end(),
+  auto record = find_if(records[i].begin(), records[i].end(),
   [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
-  if (nameserver != nameservers[i].end())
-    return nameserver->second;
+  if (record != records[i].end())
+    return record->second;
   return NON_EXISTING_ADDRESS;
 }

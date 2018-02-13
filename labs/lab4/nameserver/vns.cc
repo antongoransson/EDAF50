@@ -5,23 +5,23 @@ using std::pair;
 VNS::VNS() {}
 
 void VNS::insert(const HostName& hn, const IPAddress& ip) {
-  nameservers.push_back(make_pair(hn, ip));
+  records.push_back(make_pair(hn, ip));
 }
 
 bool VNS::remove(const HostName& hn) {
-  auto nameserver = remove_if (nameservers.begin(), nameservers.end(),
+  auto record = remove_if (records.begin(), records.end(),
    [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
-  if (nameserver != nameservers.end()){
-    nameservers.erase(nameserver);
+  if (record != records.end()){
+    records.erase(record);
     return true;
   }
   return false;
 }
 
 IPAddress VNS::lookup(const HostName& hn) const {
-  auto nameserver = find_if(nameservers.begin(), nameservers.end(),
+  auto record = find_if(records.begin(), records.end(),
 [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
-  if (nameserver != nameservers.end())
-    return nameserver->second;
+  if (record != records.end())
+    return record->second;
   return NON_EXISTING_ADDRESS;
 }
