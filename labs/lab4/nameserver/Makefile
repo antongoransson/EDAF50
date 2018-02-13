@@ -33,8 +33,8 @@ t1: nstest
 t2: nstime
 	./nstime
 # Targets rely on implicit rules for compiling and linking
-nstest: vns.o mns.o umns.o
-nstime: vns.o mns.o umns.o
+nstest: vns.o mns.o umns.o hns.o
+nstime: vns.o mns.o umns.o hns.o
 # Phony targets
 .PHONY: all test clean distclean
 

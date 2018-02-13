@@ -1,6 +1,5 @@
 #include "vns.h"
 
-using std::find_if;
 using std::pair;
 
 VNS::VNS() {}

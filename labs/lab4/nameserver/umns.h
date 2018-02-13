@@ -1,8 +1,4 @@
 #include "nameserverinterface.h"
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <algorithm>
 #include <unordered_map>
 
 class UMNS : public NameServerInterface {
