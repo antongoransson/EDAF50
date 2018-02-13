@@ -30,7 +30,7 @@ all: $(PROGS)
 t1: nstest
 	./nstest
 # Targets rely on implicit rules for compiling and linking
-nstest: vns.o
+nstest: vns.o mns.o
 # Phony targets
 .PHONY: all test clean distclean
 
