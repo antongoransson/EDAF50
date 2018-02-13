@@ -12,5 +12,5 @@ public:
   bool remove(const HostName& hn) override;
   IPAddress lookup(const HostName& hn) const override;
 private:
-  std::vector<std::pair<HostName, unsigned int>> nameservers;
+  std::vector<std::pair<HostName, IPAddress>> nameservers;
 };
