@@ -23,7 +23,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = nstest
+PROGS = nstest nstime
 
 all: $(PROGS)
 
