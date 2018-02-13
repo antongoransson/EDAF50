@@ -1,9 +1,5 @@
 #include "umns.h"
-using std::string;
-using std::cout;
-using std::endl;
-using std::istringstream;
-using std::ifstream;
+
 using std::unordered_map;
 
 UMNS::UMNS() {}

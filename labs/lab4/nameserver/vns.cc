@@ -1,10 +1,5 @@
 #include "vns.h"
 
-using std::string;
-using std::cout;
-using std::endl;
-using std::istringstream;
-using std::ifstream;
 using std::find_if;
 using std::pair;
 
