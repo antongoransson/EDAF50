@@ -14,6 +14,7 @@
 using namespace std;
 
 int main() {
+	cout << "BIT TEST 2" << endl;
 	// Define an empty bitset, set every third bit, print
 	Bitset bs;
 	for (size_t i = 0; i < bs.size(); i += 3) {
@@ -21,7 +22,7 @@ int main() {
 	}
 	copy(bs.begin(), bs.end(), ostream_iterator<bool>(cout));
 	cout << endl;
-	
+
 	// Find the first five bits that are set, complement them, print
 	size_t cleared = 0;
 	auto it = bs.begin();
@@ -35,8 +36,8 @@ int main() {
 	}
 	copy(bs.begin(), bs.end(), ostream_iterator<bool>(cout));
 	cout << endl;
-	
+
 	// Count the number of set bits, print
+
 	cout << "Number of set bits: " << count(bs.begin(), bs.end(), true) << endl;
 }
-

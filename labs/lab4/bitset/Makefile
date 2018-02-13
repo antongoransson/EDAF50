@@ -23,7 +23,7 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = nstest nstime
+PROGS = simplebitsettest bitsettest1 bitsettest2
 
 all: $(PROGS)
 
@@ -32,6 +32,12 @@ t1: simplebitsettest
 
 t2: bitsettest1
 	./bitsettest1
+
+t3: bitsettest2
+	./bitsettest2
+
+t4: bitsettest1 bitsettest2
+	./bitsettest1 && ./bitsettest2
 # Targets rely on implicit rules for compiling and linking
 simplebitsettest: simplebitset.o
 bitsettest1: bitset.o bitreference.o
