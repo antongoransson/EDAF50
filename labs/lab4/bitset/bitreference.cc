@@ -11,14 +11,16 @@ BitReference& BitReference::operator=(bool b) {
 }
 
 BitReference& BitReference::operator=(const BitReference& rhs) {
-	if (rhs.p_bits[rhs.pos]) {
-		*p_bits |= 1L << pos;
-	} else {
-		*p_bits &= ~ (1L << pos);
-	}
+	// if (rhs) {
+  //              *p_bits |= 1L << pos;
+  //      } else {
+  //              *p_bits &= ~ (1L << pos);
+  //      }
+
+	*this = !!rhs;
 	return *this;
 }
 
 BitReference::operator bool() const {
-	return (*p_bits & (1L << pos)) != 0;
+	return *p_bits & (1L << pos);
 }
