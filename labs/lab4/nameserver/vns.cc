@@ -10,7 +10,7 @@ void VNS::insert(const HostName& hn, const IPAddress& ip) {
 
 bool VNS::remove(const HostName& hn) {
   auto record = remove_if (records.begin(), records.end(),
-   [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
+    [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
   if (record != records.end()){
     records.erase(record);
     return true;
@@ -20,7 +20,7 @@ bool VNS::remove(const HostName& hn) {
 
 IPAddress VNS::lookup(const HostName& hn) const {
   auto record = find_if(records.begin(), records.end(),
-[&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
+    [&hn](const pair<HostName, IPAddress>& p) { return p.first == hn; });
   if (record != records.end())
     return record->second;
   return NON_EXISTING_ADDRESS;
