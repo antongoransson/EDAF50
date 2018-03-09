@@ -4,13 +4,14 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <textiterator.h>
+
 class Text {
 public:
 	void addLine(const std::string& line) { lines.push_back(line); }
-	typedef std::string::iterator iterator;
-  typedef std::string::const_iterator const_iterator;
-	iterator begin() { return lines[0].begin();}
-	iterator end() { return lines[0].end(); }
+	using iterator = TextIterator;
+	iterator begin() { return iterator(&lines, 0); }
+	iterator end() { return iterator(&lines, lines.size()); }
 
 private:
 	std::vector<std::string> lines;
