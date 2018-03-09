@@ -29,9 +29,13 @@ t1: csorttest
 
 t2: generate
 	./generate
+
+t3: count_words
+	./count_words infile1.txt infile2.txt infile3.txt abc.txt
 # Targets rely on implicit rules for compiling and linking
 csorttest: csorttest.o
 generate: generate.o
+count_words: count_words.o
 
 # Phony targets
 .PHONY: all clean distclean
