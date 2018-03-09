@@ -7,7 +7,7 @@ HNS::HNS(size_t s): size(s), records(s) {}
 
 void HNS::insert(const HostName& hn, const IPAddress& ip) {
   size_t i = hash<HostName>()(hn) % size;
-  records[i].push_back(make_pair(hn, ip));
+  records[i].emplace_back(hn, ip);
 }
 
 bool HNS::remove(const HostName& hn) {
